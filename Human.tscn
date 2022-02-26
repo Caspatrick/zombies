@@ -1,0 +1,149 @@
+[gd_scene load_steps=41 format=2]
+
+[ext_resource path="res://animation/human_walk2.png" type="Texture" id=1]
+[ext_resource path="res://animation/human_walk1.png" type="Texture" id=2]
+[ext_resource path="res://Person.gd" type="Script" id=3]
+[ext_resource path="res://animation/zombie_walk2.png" type="Texture" id=4]
+[ext_resource path="res://animation/turned_walk1.png" type="Texture" id=5]
+[ext_resource path="res://animation/turned_walk2.png" type="Texture" id=6]
+[ext_resource path="res://animation/zombie_walk1.png" type="Texture" id=7]
+[ext_resource path="res://Area2D.gd" type="Script" id=8]
+[ext_resource path="res://animation/dying5.png" type="Texture" id=9]
+[ext_resource path="res://animation/dying6.png" type="Texture" id=10]
+[ext_resource path="res://animation/dying7.png" type="Texture" id=11]
+[ext_resource path="res://animation/dying1.png" type="Texture" id=12]
+[ext_resource path="res://animation/dying3.png" type="Texture" id=13]
+[ext_resource path="res://animation/dying2.png" type="Texture" id=14]
+[ext_resource path="res://animation/dying4.png" type="Texture" id=15]
+[ext_resource path="res://animation/skull_0003.png" type="Texture" id=16]
+[ext_resource path="res://animation/skull_0004.png" type="Texture" id=17]
+[ext_resource path="res://animation/skull_0018.png" type="Texture" id=18]
+[ext_resource path="res://animation/skull_0005.png" type="Texture" id=19]
+[ext_resource path="res://animation/skull_0011.png" type="Texture" id=20]
+[ext_resource path="res://animation/skull_0021.png" type="Texture" id=21]
+[ext_resource path="res://animation/skull_0001.png" type="Texture" id=22]
+[ext_resource path="res://animation/skull_0007.png" type="Texture" id=23]
+[ext_resource path="res://animation/skull_0016.png" type="Texture" id=24]
+[ext_resource path="res://animation/skull_0002.png" type="Texture" id=25]
+[ext_resource path="res://animation/skull_0008.png" type="Texture" id=26]
+[ext_resource path="res://animation/skull_0015.png" type="Texture" id=27]
+[ext_resource path="res://animation/skull_0020.png" type="Texture" id=28]
+[ext_resource path="res://animation/skull_0013.png" type="Texture" id=29]
+[ext_resource path="res://animation/skull_0019.png" type="Texture" id=30]
+[ext_resource path="res://animation/skull_0014.png" type="Texture" id=31]
+[ext_resource path="res://animation/skull_0010.png" type="Texture" id=32]
+[ext_resource path="res://animation/skull_0012.png" type="Texture" id=33]
+[ext_resource path="res://animation/skull_0017.png" type="Texture" id=34]
+[ext_resource path="res://animation/skull_0009.png" type="Texture" id=35]
+[ext_resource path="res://animation/skull_0006.png" type="Texture" id=36]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "idle_turned",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "walk_human",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 12 ), ExtResource( 14 ), ExtResource( 13 ), ExtResource( 15 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": false,
+"name": "dying",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "walk_zombie",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "idle_human",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "walk_turned",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "idle_zombie",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 42.5216
+height = 0.0
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 6.72625
+height = 10.1858
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 29 ), ExtResource( 31 ), ExtResource( 27 ) ],
+"loop": true,
+"name": "skull5",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 32 ), ExtResource( 20 ), ExtResource( 33 ) ],
+"loop": true,
+"name": "skull4",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 22 ), ExtResource( 25 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "skull1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 17 ), ExtResource( 19 ), ExtResource( 36 ) ],
+"loop": true,
+"name": "skull2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 24 ), ExtResource( 34 ), ExtResource( 18 ) ],
+"loop": true,
+"name": "skull6",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 30 ), ExtResource( 28 ), ExtResource( 21 ) ],
+"loop": true,
+"name": "skull7",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 23 ), ExtResource( 26 ), ExtResource( 35 ) ],
+"loop": true,
+"name": "skull3",
+"speed": 5.0
+} ]
+
+[node name="Human" type="KinematicBody2D"]
+position = Vector2( 2.211, 0.685396 )
+script = ExtResource( 3 )
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource( 8 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Area2D"]
+frames = SubResource( 1 )
+animation = "dying"
+
+[node name="InfectionShape" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -1.73265, -2.09938 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2( -2.0087, 11.143 )
+shape = SubResource( 3 )
+
+[node name="skulls_sprite" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( 0.554779, -25.2424 )
+frames = SubResource( 4 )
+animation = "skull1"
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
